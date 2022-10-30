@@ -10,7 +10,7 @@ public class ControllerSheeps : MonoBehaviour
     public int SheepCount;
 
     public List<GameObject> SheepList1;
-    List<GameObject> SheepList2;
+    public List<GameObject> SheepList2;
     List<GameObject> SheepListSelected;
 
     Ray ray;
@@ -35,9 +35,33 @@ public class ControllerSheeps : MonoBehaviour
             if (Physics.Raycast(ray, out hitData, 1000, layerMask))
             {
                 mouseClickPosition = hitData.point;
-                foreach (GameObject sheep in SheepList1) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
+                foreach (GameObject sheep in SheepListSelected) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
                 Debug.Log(mouseClickPosition);
             }
         }
+    }
+
+    public void SplitSheepList()
+    {
+        int i = 0;
+        List<GameObject> _Sheeplist1 = new List<GameObject>();
+        foreach (GameObject sheep in SheepList1)
+        {
+            if (i > SheepList1.Count / 2) SheepList2.Add(sheep);
+            else _Sheeplist1.Add(sheep);
+            i++;
+        }
+
+        SheepList1 = _Sheeplist1;
+    }
+
+    public void SelectSheepList1()
+    {
+        SheepListSelected = SheepList1;
+    }
+
+    public void SelectSheepList2()
+    {
+        SheepListSelected = SheepList2;
     }
 }
