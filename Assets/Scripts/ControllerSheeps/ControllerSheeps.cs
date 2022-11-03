@@ -69,7 +69,7 @@ public class ControllerSheeps : MonoBehaviour
 
     IEnumerator ParticleSleep()
     {
-        GameObject particleEffect = Instantiate(ParticlePrefab, mouseClickPosition, Quaternion.identity, transform);
+        GameObject particleEffect = Instantiate(ParticlePrefab, mouseClickPosition,Quaternion.FromToRotation(Vector3.up,hitData.normal), transform);
 
         yield return new WaitForSeconds(5);
 
