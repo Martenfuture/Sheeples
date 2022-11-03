@@ -7,6 +7,7 @@ public class ControllerSheeps : MonoBehaviour
 {
     public LayerMask layerMask;
     public GameObject SheepPrefab;
+    public GameObject ParticlePrefab;
     public int SheepCount;
 
     public List<GameObject> SheepList1;
@@ -36,6 +37,7 @@ public class ControllerSheeps : MonoBehaviour
             {
                 mouseClickPosition = hitData.point;
                 foreach (GameObject sheep in SheepListSelected) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
+                StartCoroutine(ParticleSleep());
                 Debug.Log(mouseClickPosition);
             }
         }
@@ -63,5 +65,14 @@ public class ControllerSheeps : MonoBehaviour
     public void SelectSheepList2()
     {
         SheepListSelected = SheepList2;
+    }
+
+    IEnumerator ParticleSleep()
+    {
+        GameObject particleEffect = Instantiate(ParticlePrefab, mouseClickPosition, Quaternion.identity, transform);
+
+        yield return new WaitForSeconds(5);
+
+        Destroy(particleEffect);
     }
 }
