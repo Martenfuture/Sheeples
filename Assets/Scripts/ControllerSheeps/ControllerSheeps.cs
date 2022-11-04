@@ -9,6 +9,7 @@ public class ControllerSheeps : MonoBehaviour
     public GameObject SheepPrefab;
     public GameObject ParticlePrefab;
     public int SheepCount;
+    public Vector2 RandomRange;
 
     public List<GameObject> SheepList1;
     public List<GameObject> SheepList2;
@@ -22,8 +23,11 @@ public class ControllerSheeps : MonoBehaviour
     {
         for (int i = 0; i < SheepCount; i++)
         {
+            float randomValue = Random.Range(RandomRange.x, RandomRange.y);
             Vector3 spawnPosition = new Vector3(transform.position.x + Random.Range(-5, 5), transform.position.y, transform.position.z + Random.Range(-5, 5));
             GameObject sheep = Instantiate(SheepPrefab, spawnPosition, Quaternion.identity, transform);
+            sheep.GetComponent<NavMeshAgent>().speed = 4 - randomValue;
+            sheep.GetComponent<NavMeshAgent>().stoppingDistance = 3 + randomValue;
             SheepList1.Add(sheep);
         }
         SheepListSelected = SheepList1;
@@ -41,6 +45,8 @@ public class ControllerSheeps : MonoBehaviour
                 Debug.Log(mouseClickPosition);
             }
         }
+
+        foreach (GameObject sheep in SheepListSelected) Debug.Log(sheep.GetComponent<NavMeshAgent>().remainingDistance);
     }
 
     public void SplitSheepList()
@@ -55,6 +61,8 @@ public class ControllerSheeps : MonoBehaviour
         }
 
         SheepList1 = _Sheeplist1;
+        SheepListSelected = SheepList1;
+
     }
 
     public void SelectSheepList1()
