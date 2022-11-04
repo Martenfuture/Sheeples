@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
-    public float movementSpeed = 10f;
+    public float movementSpeed;
     
     
     public static PlayerMovement instance = null;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         instance = this;
     }
 
