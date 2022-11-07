@@ -42,11 +42,11 @@ public class ControllerSheeps : MonoBehaviour
                 mouseClickPosition = hitData.point;
                 foreach (GameObject sheep in SheepListSelected) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
                 StartCoroutine(ParticleSleep());
-                Debug.Log(mouseClickPosition);
+                //Debug.Log(mouseClickPosition);
             }
         }
 
-        foreach (GameObject sheep in SheepListSelected) Debug.Log(sheep.GetComponent<NavMeshAgent>().remainingDistance);
+        //foreach (GameObject sheep in SheepListSelected) Debug.Log(sheep.GetComponent<NavMeshAgent>().remainingDistance);
     }
 
     public void SplitSheepList()
