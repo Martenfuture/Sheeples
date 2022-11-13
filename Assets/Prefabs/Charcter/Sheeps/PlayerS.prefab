@@ -206,9 +206,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2733834277807187397}
   - component: {fileID: 2733834277807187399}
-  m_Layer: 0
+  - component: {fileID: 110471230219854568}
+  m_Layer: 8
   m_Name: PlayerS
-  m_TagString: Untagged
+  m_TagString: Sheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +252,19 @@ NavMeshAgent:
   m_BaseOffset: 0.73
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!114 &110471230219854568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733834277807187398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d85def340df00d4b862215d1c8da6ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomRangeForward: {x: 1, y: 5}
 --- !u!1 &3233555625109429686
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,9 +607,9 @@ GameObject:
   - component: {fileID: 7856828812538072746}
   - component: {fileID: 2141348472944449527}
   - component: {fileID: 1981619465162435107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Sheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
