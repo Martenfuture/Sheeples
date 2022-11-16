@@ -207,9 +207,11 @@ GameObject:
   - component: {fileID: 2733834277807187397}
   - component: {fileID: 2733834277807187399}
   - component: {fileID: 110471230219854568}
+  - component: {fileID: 4530361481063353991}
+  - component: {fileID: 583191537500550741}
   m_Layer: 8
   m_Name: PlayerS
-  m_TagString: Sheep
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,6 +267,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomRangeForward: {x: 1, y: 5}
+  WalkingDirection: {x: 0, y: 0, z: 0}
+--- !u!54 &4530361481063353991
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733834277807187398}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 100
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &583191537500550741
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733834277807187398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.32
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3233555625109429686
 GameObject:
   m_ObjectHideFlags: 0
