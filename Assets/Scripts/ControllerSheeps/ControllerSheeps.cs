@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+//using UnityEngine.AI;
 
 public class ControllerSheeps : MonoBehaviour
 {
@@ -26,8 +26,8 @@ public class ControllerSheeps : MonoBehaviour
             float randomValue = Random.Range(RandomRange.x, RandomRange.y);
             Vector3 spawnPosition = new Vector3(transform.position.x + Random.Range(-5, 5), transform.position.y, transform.position.z + Random.Range(-5, 5));
             GameObject sheep = Instantiate(SheepPrefab, spawnPosition, Quaternion.identity, transform);
-            sheep.GetComponent<NavMeshAgent>().speed = 4 - randomValue;
-            sheep.GetComponent<NavMeshAgent>().stoppingDistance = 3 + randomValue;
+            //sheep.GetComponent<NavMeshAgent>().speed = 4 - randomValue;
+            //sheep.GetComponent<NavMeshAgent>().stoppingDistance = 3 + randomValue;
             SheepList1.Add(sheep);
         }
         SheepListSelected = SheepList1;
@@ -40,7 +40,7 @@ public class ControllerSheeps : MonoBehaviour
             if (Physics.Raycast(ray, out hitData, 1000, layerMask))
             {
                 mouseClickPosition = hitData.point;
-                foreach (GameObject sheep in SheepListSelected) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
+                //foreach (GameObject sheep in SheepListSelected) sheep.GetComponent<NavMeshAgent>().SetDestination(mouseClickPosition);
                 StartCoroutine(ParticleSleep());
                 //Debug.Log(mouseClickPosition);
             }
