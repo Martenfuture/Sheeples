@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -1531,7 +1531,11 @@ MonoBehaviour:
   - {fileID: 1392942212}
   - {fileID: 2005601368}
   - {fileID: 639496090}
-  playerLayers: []
+  playerLayers:
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2052250987
 GameObject:
   m_ObjectHideFlags: 0
