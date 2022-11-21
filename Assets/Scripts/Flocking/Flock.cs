@@ -8,7 +8,7 @@ public class Flock : MonoBehaviour
     List<FlockAgent> agents = new List<FlockAgent>();
     public FlockBehavior behavior;
 
-    [Range(10, 500)]
+    [Range(10, 20000)]
     public int startingCount = 250;
     const float AgentDensity = 0.1f;
 
@@ -18,7 +18,7 @@ public class Flock : MonoBehaviour
     public float maxSpeed = 5f;
     [Range(1f, 10f)]
     public float neighborRadius = 1.5f;
-    [Range(0f, 1f)]
+    [Range(0f, 5f)]
     public float avoidanceRadiusMultiplier = 0.5f;
 
     float squareMaxSpeed;
@@ -35,7 +35,6 @@ public class Flock : MonoBehaviour
         for (int i = 0; i < startingCount; i++)
         {
             Vector2 _randomCirclePosition = Random.insideUnitCircle * startingCount * AgentDensity;
-            Debug.Log(_randomCirclePosition);
             Vector3 _spawnPosition = new Vector3(transform.position.x + _randomCirclePosition.x,transform.position.y, transform.position.z + _randomCirclePosition.y);
             FlockAgent newAgent = Instantiate(
                 agentPrefab,
@@ -59,6 +58,7 @@ public class Flock : MonoBehaviour
             //Debug.DrawRay(agent.transform.position, agent.transform.up * 10, Color.Lerp(Color.green, Color.red, context.Count / 6f));
 
             Vector3 move = behavior.CalculateMove(agent, context, this);
+            //Debug.DrawRay(agent.transform.position + move, agent.transform.up, Color.red);
             //Debug.DrawRay(move, agent.transform.up * 10, Color.green);
             move *= driveFactor;
             if (move.sqrMagnitude > squareMaxSpeed)

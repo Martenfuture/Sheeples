@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Flock/Behavior/Cohesion")]
-public class CohesionBehavior : FilteredFlockBehavior
+[CreateAssetMenu(menuName = "Flock/Behavior/Steered Cohesion")]
+public class SteeredCohesionBehavior : FilteredFlockBehavior
 {
+    Vector3 currentVelocity;
+    public float agentSmoothTime = 0.5f;
+
     public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
     {
         //if no neighbors, return no adjustment
@@ -13,6 +16,7 @@ public class CohesionBehavior : FilteredFlockBehavior
 
         //add all points together and average
         Vector3 cohesionMove = Vector3.zero;
+        //https://youtu.be/DbQjieYgAKA?list=PL5KbKbJ6Gf99UlyIqzV1UpOzseyRn5H1d&t=873
         List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
         foreach (Transform item in filteredContext)
         {
@@ -21,7 +25,7 @@ public class CohesionBehavior : FilteredFlockBehavior
         cohesionMove /= context.Count;
         //create offset from agent position
         cohesionMove -= agent.transform.position;
-
+        cohesionMove = Vector3.SmoothDamp(agent.transform.forward, cohesionMove,ref currentVelocity, agentSmoothTime);
         return cohesionMove;
     }
 }

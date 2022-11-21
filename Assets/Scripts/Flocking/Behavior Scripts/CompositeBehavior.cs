@@ -37,6 +37,6 @@ public class CompositeBehavior : FlockBehavior
             }
         }
 
-        return move;
+        return new Vector3(move.x, 0 , move.z);
     }
 }
