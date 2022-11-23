@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class ThirdPersonController : MonoBehaviour
 {
     //input fields
-    private ThirdPersonActionsAsset playerActionsAsset;
+    //private ThirdPersonActionsAsset playerActionsAsset;
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
     private InputAction move;
 
     //movement fields
@@ -27,23 +29,33 @@ public class ThirdPersonController : MonoBehaviour
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
-        playerActionsAsset = new ThirdPersonActionsAsset();
         animator = this.GetComponent<Animator>();
+
+        //playerActionsAsset = new ThirdPersonActionsAsset();
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        player = inputAsset.FindActionMap("Player");
     }
 
     private void OnEnable()
     {
-        playerActionsAsset.Player.Jump.started += DoJump;
-        playerActionsAsset.Player.Attack.started += DoAttack;
-        move = playerActionsAsset.Player.Move;
-        playerActionsAsset.Player.Enable();
+        //playerActionsAsset.Player.Jump.started += DoJump;
+        //playerActionsAsset.Player.Attack.started += DoAttack;
+        //move = playerActionsAsset.Player.Move;
+        //playerActionsAsset.Player.Enable();
+        player.FindAction("Jump").started += DoJump;
+        player.FindAction("Attack").started += DoAttack;
+        move = player.FindAction("Move");
+        player.Enable();
     }
 
     private void OnDisable()
     {
-        playerActionsAsset.Player.Jump.started -= DoJump;
-        playerActionsAsset.Player.Attack.started -= DoAttack;
-        playerActionsAsset.Player.Disable();
+        //playerActionsAsset.Player.Jump.started -= DoJump;
+        //playerActionsAsset.Player.Attack.started -= DoAttack;
+        //playerActionsAsset.Player.Disable();
+        player.FindAction("Jump").started -= DoJump;
+        player.FindAction("Attack").started -= DoAttack;
+        player.Disable();
     }
 
     private void FixedUpdate()
@@ -101,7 +113,7 @@ public class ThirdPersonController : MonoBehaviour
     private bool IsGrounded()
     {
         Ray ray = new Ray(this.transform.position + Vector3.up * 0.25f, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 0.5f))
             return true;
         else
             return false;
@@ -109,7 +121,6 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
-        animator.SetTrigger("attack");
+        animator.SetTrigger("Attack");
     }
 }
-
