@@ -63,7 +63,7 @@ public class Flock : MonoBehaviour
             move *= driveFactor;
             if (move.sqrMagnitude > squareMaxSpeed)
             {
-                move = move.normalized * maxSpeed;
+                move = move.normalized * agent.GetComponent<FlockAgent>().Speed;
             }
             agent.Move(move);
         }
