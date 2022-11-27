@@ -18,7 +18,7 @@ public class AvoidanceBehavior : FilteredFlockBehavior
         List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
         foreach (Transform item in filteredContext)
         {
-            //if (item.name == "Test_Cube") Debug.Log("COLLISION");
+            if (item.name == "Test_Cube") Debug.Log("COLLISION");
             if (Vector3.SqrMagnitude(item.position - agent.transform.position) < flock.SquareAvoidanceRadius)
             {
                 nAvoid++;

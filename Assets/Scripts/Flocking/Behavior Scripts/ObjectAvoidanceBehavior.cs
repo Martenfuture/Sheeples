@@ -15,20 +15,16 @@ public class ObjectAvoidanceBehavior : FilteredFlockBehavior
         //add all points together and average
         float lowestDistance = 100;
         Vector3 avoidanceMove = Vector3.zero;
-        int nAvoid = 0;
         List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
         foreach (Transform item in filteredContext)
         {
             if (item.name == "Test_Cube") Debug.Log("COLLISION");
             if ((Vector3.SqrMagnitude(item.position - agent.transform.position) < flock.SquareAvoidanceRadius) && (lowestDistance > Vector3.Distance(agent.transform.position, item.position)))
             {
-                nAvoid++;
-                avoidanceMove += agent.transform.position - item.position;
+                avoidanceMove = agent.transform.position - item.position;
+                lowestDistance = Vector3.Distance(agent.transform.position, item.position);
             }
         }
-
-        if (nAvoid > 0)
-            avoidanceMove /= nAvoid;
 
 
         return avoidanceMove;
