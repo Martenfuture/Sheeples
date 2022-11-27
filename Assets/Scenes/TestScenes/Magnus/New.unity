@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d61b0713678481408ca537a8985f1e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4.86
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d61b0713678481408ca537a8985f1e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 2311997199401995356, guid: e427b25b1545fac49a9549410332dfb3,
+  m_PlayerPrefab: {fileID: 1080802222669570307, guid: 1ae0c5202ef69174da6866bd8c333652,
     type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
@@ -1776,7 +1776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134924939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10.2}
+  m_LocalPosition: {x: 0, y: -5, z: 10.2}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []

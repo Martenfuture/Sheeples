@@ -6037,6 +6037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2057745512}
   - component: {fileID: 2057745511}
+  - component: {fileID: 2057745513}
   m_Layer: 0
   m_Name: Flock
   m_TagString: Untagged
@@ -6051,7 +6052,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057745510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b931f815150a62a4ebb63c6f7397aec9, type: 3}
   m_Name: 
@@ -6059,7 +6060,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 1447256351709770395, guid: 1c59425c135447d4288a950985387c07,
     type: 3}
   behavior: {fileID: 11400000, guid: 5c7a5d7ab6b33f64fbc30949a8ecb649, type: 2}
-  startingCount: 250
+  startingCount: 10
   driveFactor: 10
   maxSpeed: 2.1
   neighborRadius: 2.5
@@ -6079,6 +6080,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057745513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057745510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726fc8d0dbd8d824f977c8450148965a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPrefab: {fileID: 3453897570518886389, guid: 1c59425c135447d4288a950985387c07,
+    type: 3}
+  forwardPostionMultiplier: 13.2
+  TargetPosition: {x: 0, y: 0, z: 0}
+  startingCount: 50
+  driveFactor: 10
+  maxSpeed: 5
+  neighborRadius: 1.5
+  avoidanceRadiusMultiplier: 0.5
 --- !u!224 &2135906968 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7204165413311942536, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
