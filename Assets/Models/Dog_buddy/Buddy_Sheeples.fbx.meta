@@ -1,8 +1,20 @@
 fileFormatVersion: 2
-guid: 4f43eec91c1545c43bc17ada7351428b
+guid: fc7f7dbc6f68ea84aa4f7e97884646dc
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 5408822094540592666
+    second: Armature|Bark_Buddy
+  - first:
+      74: -6451859969286847202
+    second: Armature|Idle_buddy
+  - first:
+      74: 6625969979680877914
+    second: Armature|T-pose
+  - first:
+      74: -8801602056364711565
+    second: Armature|Walk_Buddy
   externalObjects: {}
   materials:
     materialImportMode: 2
