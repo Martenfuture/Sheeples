@@ -8,8 +8,7 @@ public class DogSheepTrigger : MonoBehaviour
     {
         if(other.tag == "Sheep")
         {
-            Debug.Log("Sheep Triggert");
-            SheepManager.instance.SetTargetDirection(transform.position);
+            SheepManager.instance.SetTargetDirection(transform.position, other.GetComponent<SheepAgent>().sheepGroupId);
         }
     }
 }

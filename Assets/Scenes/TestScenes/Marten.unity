@@ -4694,7 +4694,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1472507338}
+      objectReference: {fileID: 2057745513}
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -4703,12 +4703,12 @@ PrefabInstance:
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SplitSheepList
+      value: SplitSheepListRandom
       objectReference: {fileID: 0}
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ControllerSheeps, Assembly-CSharp
+      value: SheepManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
@@ -6578,7 +6578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1393597015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9493,9 +9493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 3453897570518886389, guid: 1c59425c135447d4288a950985387c07,
     type: 3}
-  forwardPostionMultiplier: 13.2
+  forwardPostionMultiplier: 13
   targetPosition: {x: 0, y: 0, z: 0}
-  targetDirection: {x: 0, y: 0, z: 0}
   targetDirectionStrength: 3
   startingCount: 50
   driveFactor: 10
