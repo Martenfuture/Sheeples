@@ -5,11 +5,17 @@ using UnityEngine.AI;
 
 public class SheepManager : MonoBehaviour
 {
+    public static SheepManager instance = null;
+
     public GameObject agentPrefab;
     List<GameObject> agents = new List<GameObject>();
     public float forwardPostionMultiplier;
 
-    public Vector3 TargetPosition = Vector3.zero;
+    public Vector3 targetPosition = Vector3.zero;
+    public Vector3 targetDirection = Vector3.zero;
+    public float targetDirectionStrength = 3f;
+
+    Vector3 middlePosition;
 
     [Range(1, 500)]
     public int startingCount = 250;
@@ -23,6 +29,11 @@ public class SheepManager : MonoBehaviour
     public float neighborRadius = 1.5f;
     [Range(0f, 5f)]
     public float avoidanceRadiusMultiplier = 0.5f;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -43,7 +54,7 @@ public class SheepManager : MonoBehaviour
 
     void Update()
     {
-        TargetPosition = Vector3.zero;
+        targetPosition = Vector3.zero;
         Vector3 direction = Vector3.zero;
         foreach (GameObject agent in agents)
         {
@@ -52,18 +63,28 @@ public class SheepManager : MonoBehaviour
         direction /= agents.Count;
         direction.Normalize();
 
-        Vector3 middlePosition = Vector3.zero;
+        middlePosition = Vector3.zero;
         foreach (GameObject agent in agents)
         {
             middlePosition += agent.transform.position;
         }
+        direction += targetDirection * targetDirectionStrength;
+        direction.Normalize();
+        Debug.DrawRay(middlePosition, targetDirection * 10, Color.red);
         middlePosition /= agents.Count;
-        TargetPosition = middlePosition + direction * forwardPostionMultiplier;
+        targetPosition = middlePosition + direction * forwardPostionMultiplier;
+
         
         foreach (GameObject agent in agents)
         {
-            agent.GetComponent<NavMeshAgent>().SetDestination(TargetPosition);
+            agent.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
         }
-        Debug.DrawRay(TargetPosition, transform.up * 10, Color.green);
+        Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
+    }
+
+    public void SetTargetDirection(Vector3 DogPostion)
+    {
+        targetDirection = middlePosition - DogPostion;
+        targetDirection.Normalize();
     }
 }
