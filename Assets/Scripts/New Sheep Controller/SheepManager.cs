@@ -11,10 +11,11 @@ public class SheepManager : MonoBehaviour
     public GameObject agentPrefab;
     List<SheepGroup> sheepGroups = new List<SheepGroup>();
     public float forwardPostionMultiplier;
+    public float baseSpeed;
 
     public Vector3 targetPosition = Vector3.zero;
     Vector3 targetDirection = Vector3.zero;
-    public float targetDirectionStrength = 3f;
+    public float targetDirectionStrengthMultiplier = 0.25f;
 
     Vector3 middlePosition;
 
@@ -51,6 +52,7 @@ public class SheepManager : MonoBehaviour
                 );
             newAgent.name = "Agent " + i;
             sheepGroups[0].sheeps.Add(newAgent);
+            newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
         }
     }
 
@@ -72,7 +74,8 @@ public class SheepManager : MonoBehaviour
             {
                 sheepGroup.middlePosition += sheep.transform.position;
             }
-            direction += sheepGroup.targetDirection * targetDirectionStrength;
+            sheepGroup.targetDirectionStrength += targetDirectionStrengthMultiplier * Time.deltaTime;
+            direction += sheepGroup.targetDirection * Mathf.Lerp(3f, 0, sheepGroup.targetDirectionStrength);
             direction.Normalize();
             sheepGroup.middlePosition /= sheepGroup.sheeps.Count;
             targetPosition = sheepGroup.middlePosition + direction * forwardPostionMultiplier;
@@ -91,6 +94,7 @@ public class SheepManager : MonoBehaviour
         Vector3 direction = sheepGroups[sheepGroupId].middlePosition - dogPostion;
         direction.Normalize();
         sheepGroups[sheepGroupId].targetDirection = direction;
+        sheepGroups[sheepGroupId].targetDirectionStrength = 0;
     }
 
 
@@ -100,11 +104,25 @@ public class SheepManager : MonoBehaviour
 
         List<GameObject> newSheepGroup = sheepGroups[0].sheeps.Where(sheep => Vector3.Distance(sheep.transform.position, randomSheep.transform.position) < Random.Range(1,5)).ToList();
         sheepGroups[0].sheeps.RemoveAll(sheep => newSheepGroup.Contains(sheep));
+        float groupBaseSpeed = Random.Range(2, 3.5f);
 
         foreach (GameObject sheep in newSheepGroup)
         {
             sheep.GetComponent<SheepAgent>().sheepGroupId = sheepGroups.Count;
+            sheep.GetComponent<NavMeshAgent>().speed = groupBaseSpeed + Random.Range(-0.5f, 0.5f);
         }
         sheepGroups.Add(new SheepGroup() { sheeps = newSheepGroup });
     }
+
+    public void MergeSheepGroup()
+    {
+        int groupIndex = 1;
+        foreach (GameObject sheep in sheepGroups[groupIndex].sheeps)
+        {
+            sheepGroups[0].sheeps.Add(sheep);
+            sheep.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
+        }
+        sheepGroups.RemoveAt(groupIndex);
+    }
+
 }
