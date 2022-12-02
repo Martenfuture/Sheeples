@@ -84,6 +84,7 @@ public class SheepManager : MonoBehaviour
             foreach (GameObject sheep in sheepGroup.sheeps)
             {
                 sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
+                sheep.GetComponent<Animator>().SetFloat("movementSpeed", sheep.GetComponent<NavMeshAgent>().velocity.magnitude);
             }
             Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
         }
