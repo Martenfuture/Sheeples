@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc7f7dbc6f68ea84aa4f7e97884646dc
+guid: 1a9753f9e19feaa4a9e7cea53dd37e89
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: -6451859969286847202
     second: Armature|Idle_buddy
+  - first:
+      74: 8353479621221143743
+    second: Armature|Run_Buddy
   - first:
       74: 6625969979680877914
     second: Armature|T-pose
