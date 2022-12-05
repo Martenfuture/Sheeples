@@ -19,7 +19,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField]
     private float jumpForce = 5f;
     [SerializeField]
-    private float maxSpeed = 5f;
+    private float maxSpeed = 12f;
     private Vector3 forceDirection = Vector3.zero;
 
     [SerializeField]
@@ -75,6 +75,15 @@ public class ThirdPersonController : MonoBehaviour
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
         LookAt();
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            maxSpeed = 20f;
+        }
+        else
+        {
+            maxSpeed = 12f;
+        }
     }
 
     private void LookAt()
