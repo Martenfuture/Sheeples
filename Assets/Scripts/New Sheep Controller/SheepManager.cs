@@ -13,6 +13,9 @@ public class SheepManager : MonoBehaviour
     public float forwardPostionMultiplier;
     public float baseSpeed;
 
+    public Texture[] SheepTextures;
+    public float[] SheepTexturesWeight;
+
     public Vector3 targetPosition = Vector3.zero;
     Vector3 targetDirection = Vector3.zero;
     public float targetDirectionStrengthMultiplier = 0.25f;
@@ -39,6 +42,7 @@ public class SheepManager : MonoBehaviour
 
     void Start()
     {
+        SheepTexturesWeight = SheepCore.WeightArrayPercent(SheepTexturesWeight);
         sheepGroups.Add(new SheepGroup());
         for (int i = 0; i < startingCount; i++)
         {
@@ -53,6 +57,7 @@ public class SheepManager : MonoBehaviour
             newAgent.name = "Agent " + i;
             sheepGroups[0].sheeps.Add(newAgent);
             newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
+            newAgent.transform.GetChild(0).GetChild(1).GetComponent<Renderer>().materials[0].SetTexture("_DetailAlbedoMap", SheepTextures[SheepCore.RandomWeightArrayIndex(SheepTexturesWeight)]);
         }
     }
 

@@ -15,15 +15,7 @@ public class RandomSheepManager : MonoBehaviour
     private void Start()
     {
         Manager = GetComponent<SheepManager>();
-        float weightSum = 0;
-        for (int i = 0; i < actionWeight.Length; i++)
-        {
-            weightSum += actionWeight[i];
-        }
-        for (int i = 0; i < actionWeight.Length; i++)
-        {
-            actionWeight[i] = actionWeight[i] * 100 / weightSum / 100;
-        }
+        actionWeight = SheepCore.WeightArrayPercent(actionWeight);
     }
     private void Update()
     {
@@ -38,32 +30,21 @@ public class RandomSheepManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(randomTimeRange.x, randomTimeRange.y) * randomIntencity);
 
-        float randValue = Random.value; // Randome value (chance value)
-
-        float currentChance = 0f;
-        float minChanceRange;
-
-        for (int i = 0; i < actionWeight.Length; i++)
+        int randomActionIndex = SheepCore.RandomWeightArrayIndex(actionWeight);
+        switch (randomActionIndex)
         {
-
-            minChanceRange = currentChance;
-            currentChance += actionWeight[i];
-
-            if (randValue >= minChanceRange && randValue <= currentChance)
-            {
-                switch (i)
-                {
-                    case 0:
-                        Manager.SplitSheepListRandom(true);
-                        break;
-                    case 1:
-                        Manager.SplitSheepListRandom(false);
-                        break;
-                    default:
-                        Debug.LogError("ReanomSheepManager: Action Weights Array to long");
-                        break;
-                }
-            }
+            case 0:
+                Manager.SplitSheepListRandom(true);
+                break;
+            case 1:
+                Manager.SplitSheepListRandom(false);
+                break;
+            case -1:
+                Debug.LogError("ReanomSheepManager: Action Weights Array to long");
+                break;
+            default:
+                Debug.LogError("ReanomSheepManager: Action Weights Array to long");
+                break;
         }
 
         triggert = false;
