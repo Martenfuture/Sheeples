@@ -99,13 +99,22 @@ public class SheepManager : MonoBehaviour
     }
 
 
-    public void SplitSheepListRandom()
+    public void SplitSheepListRandom(bool SplitGroup)
     {
         GameObject randomSheep = sheepGroups[0].sheeps[Random.Range(0, sheepGroups[0].sheeps.Count)];
-
-        List<GameObject> newSheepGroup = sheepGroups[0].sheeps.Where(sheep => Vector3.Distance(sheep.transform.position, randomSheep.transform.position) < Random.Range(1,5)).ToList();
-        sheepGroups[0].sheeps.RemoveAll(sheep => newSheepGroup.Contains(sheep));
         float groupBaseSpeed = Random.Range(2, 3.5f);
+        List<GameObject> newSheepGroup = new List<GameObject>();
+        if (SplitGroup)
+        {
+            newSheepGroup = sheepGroups[0].sheeps.Where(sheep => Vector3.Distance(sheep.transform.position, randomSheep.transform.position) < Random.Range(1, 5)).ToList();
+        }
+        else
+        {
+            StartCoroutine(StopSheepDelay(randomSheep));
+            newSheepGroup.Add(randomSheep);
+            groupBaseSpeed = Random.Range(1, 2.5f);
+        }
+        sheepGroups[0].sheeps.RemoveAll(sheep => newSheepGroup.Contains(sheep));
 
         foreach (GameObject sheep in newSheepGroup)
         {
@@ -117,6 +126,10 @@ public class SheepManager : MonoBehaviour
 
     public void MergeSheepGroup()
     {
+        if (sheepGroups.Count == 1)
+        {
+            return;
+        }
         int groupIndex = 1;
         foreach (GameObject sheep in sheepGroups[groupIndex].sheeps)
         {
@@ -124,6 +137,14 @@ public class SheepManager : MonoBehaviour
             sheep.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
         }
         sheepGroups.RemoveAt(groupIndex);
+    }
+
+    IEnumerator StopSheepDelay(GameObject sheep)
+    {
+        yield return new WaitForSeconds(1);
+        SetTargetDirection(sheepGroups[0].middlePosition, sheepGroups.Count - 1);
+        yield return new WaitForSeconds(Random.Range(6,10));
+        sheep.GetComponent<NavMeshAgent>().speed = 0;
     }
 
 }

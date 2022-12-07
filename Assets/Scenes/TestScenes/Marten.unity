@@ -4688,7 +4688,7 @@ PrefabInstance:
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
@@ -7610,6 +7610,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1073880553}
     m_Modifications:
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2057745513}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SplitSheepListRandom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SheepManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470848707671821677, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2654292868246148053, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_Color.b
@@ -7633,7 +7673,7 @@ PrefabInstance:
     - target: {fileID: 3624507946577562389, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7204165413311942536, guid: a7d0b1aa6df5694489a3ccc0e9bd8255,
         type: 3}
@@ -9774,6 +9814,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SheepSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878101650191313582, guid: 3573788662baea949906ebe0bb730c19,
+        type: 3}
+      propertyPath: actionWeight.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878101650191313582, guid: 3573788662baea949906ebe0bb730c19,
+        type: 3}
+      propertyPath: actionWeight.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3573788662baea949906ebe0bb730c19, type: 3}

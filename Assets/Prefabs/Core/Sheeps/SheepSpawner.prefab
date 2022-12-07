@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 592069680259008226}
   - component: {fileID: 592069680259008227}
+  - component: {fileID: 8878101650191313582}
   m_Layer: 0
   m_Name: SheepSpawner
   m_TagString: Untagged
@@ -55,3 +56,20 @@ MonoBehaviour:
   maxSpeed: 5
   neighborRadius: 1.5
   avoidanceRadiusMultiplier: 0.5
+--- !u!114 &8878101650191313582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592069680259008236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094f391c98b1d844e890d2885f14125c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomIntencity: 1
+  actionWeight:
+  - 60
+  - 50
+  randomTimeRange: {x: 6, y: 10}
