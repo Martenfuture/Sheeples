@@ -1027,7 +1027,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 79b90bbf760c2174e9889ff0d7e8ad09, type: 2}
+      objectReference: {fileID: 2100000, guid: 030eafa611e9b2e4daf4c17a09a2ab30, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c71b08711ef2ec4cad40c0c858b1805, type: 3}
 --- !u!4 &4027922769972370125 stripped
@@ -1071,6 +1071,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6.37
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7872530217885631019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372395761746919543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6344948, z: 2.1638184}
+  m_Center: {x: 0.00000000973619, y: 0.83164036, z: 0.39331055}
 --- !u!114 &1163992379628729381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,19 +1159,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7823416847440096346}
---- !u!65 &7872530217885631019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372395761746919543}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.6344948, z: 2.1638184}
-  m_Center: {x: 0.00000000973619, y: 0.83164036, z: 0.39331055}
 --- !u!4 &5428767442598021715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8879528566716807029, guid: 2c71b08711ef2ec4cad40c0c858b1805,
