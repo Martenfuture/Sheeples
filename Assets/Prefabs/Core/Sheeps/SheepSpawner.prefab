@@ -49,21 +49,18 @@ MonoBehaviour:
     type: 3}
   forwardPostionMultiplier: 13
   baseSpeed: 3.5
-  SheepTextures:
+  sheepTextures:
   - {fileID: 2800000, guid: 5a026f84717204f4c88112a1c6774c1d, type: 3}
   - {fileID: 2800000, guid: 8ec2a22631e84b74089c805028e709e3, type: 3}
   - {fileID: 2800000, guid: 2c3c7d885ecaf0e47b77659b5aad0aea, type: 3}
-  SheepTexturesWeight:
-  - 5
+  sheepTexturesWeight:
   - 2
   - 3
+  - 5
+  spanwPositions: []
+  spawnCount: 
   targetPosition: {x: 0, y: 0, z: 0}
   targetDirectionStrengthMultiplier: 0.25
-  startingCount: 50
-  driveFactor: 10
-  maxSpeed: 5
-  neighborRadius: 1.5
-  avoidanceRadiusMultiplier: 0.5
 --- !u!114 &8878101650191313582
 MonoBehaviour:
   m_ObjectHideFlags: 0

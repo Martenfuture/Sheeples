@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8118896405679249715}
   - component: {fileID: 1540646197459649786}
   - component: {fileID: 5854566486077298069}
+  - component: {fileID: 4656406012922768025}
   m_Layer: 0
   m_Name: FlockAgent
   m_TagString: Sheep
@@ -99,6 +100,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheepGroupId: 0
+  audioSource: {fileID: 4656406012922768025}
+  audioClipArray:
+  - {fileID: 8300000, guid: f9ea332e83fe1244e80041eed379f33b, type: 3}
+  - {fileID: 8300000, guid: f6d1367aa9ea9694fb10651072c07e89, type: 3}
+  - {fileID: 8300000, guid: f6b5e76e10b96774fbc95934b374f59b, type: 3}
+  - {fileID: 8300000, guid: c7b62c62450c45c45a6d88b00c18826e, type: 3}
+  - {fileID: 8300000, guid: f301053e600b7f042b1a831f2402a04d, type: 3}
+  timeBetweenShots: 5
+  sheepMeshObject: {fileID: 7614701192381847757}
 --- !u!95 &5854566486077298069
 Animator:
   serializedVersion: 4
@@ -119,6 +129,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &4656406012922768025
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453897570518886389}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.198
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7614701192381750911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +311,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9500000, guid: 57957d6993a67ea43870ddfa1da3e6a2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 57957d6993a67ea43870ddfa1da3e6a2, type: 3}
+--- !u!1 &7614701192381847757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100018, guid: 57957d6993a67ea43870ddfa1da3e6a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7614701192381750911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7614701192382137579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400020, guid: 57957d6993a67ea43870ddfa1da3e6a2,
