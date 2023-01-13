@@ -85,8 +85,12 @@ public class SheepManager : MonoBehaviour
         
             foreach (GameObject sheep in sheepGroup.sheeps)
             {
-                sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
+                if (!sheepGroup.insideFinishArea)
+                {
+                    sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
+                }
                 sheep.GetComponent<Animator>().SetFloat("movementSpeed", sheep.GetComponent<NavMeshAgent>().velocity.magnitude);
+                sheep.GetComponent<Animator>().SetFloat("blendTreeSpeed", sheep.GetComponent<NavMeshAgent>().velocity.magnitude * 0.35f);
             }
             Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
         }
@@ -156,6 +160,33 @@ public class SheepManager : MonoBehaviour
             }
         }
         sheepGroups.RemoveAt(groupIndex);
+    }
+
+    public void EnterFinishArea(int sheepGroupId, GameObject finishArea)
+    {
+        if (!sheepGroups[sheepGroupId].insideFinishArea)
+        {
+            sheepGroups[sheepGroupId].insideFinishArea = true;
+            foreach (GameObject sheep in sheepGroups[sheepGroupId].sheeps)
+            {
+                sheep.GetComponent<NavMeshAgent>().speed *= 0.25f;
+            }
+            StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
+        }
+    }
+
+    IEnumerator SheepInsideFinishArea(int sheepGroupId, GameObject finishArea)
+    {
+
+        foreach (GameObject sheep in sheepGroups[sheepGroupId].sheeps)
+        {
+            Vector2 randomCirclePosition = Random.insideUnitCircle * 5;
+            Vector3 walkPosition = new Vector3(finishArea.transform.position.x + randomCirclePosition.x, finishArea.transform.position.y, finishArea.transform.position.z + randomCirclePosition.y);
+            sheep.GetComponent<NavMeshAgent>().SetDestination(walkPosition);
+        }
+        yield return new WaitForSeconds(2);
+
+        StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
     }
 
     IEnumerator StopSheepDelay(GameObject sheep)

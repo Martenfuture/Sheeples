@@ -8,4 +8,5 @@ public class SheepGroup
     public Vector3 middlePosition = Vector3.zero;
     public Vector3 targetDirection = Vector3.zero;
     public float targetDirectionStrength;
+    public bool insideFinishArea;
 }
