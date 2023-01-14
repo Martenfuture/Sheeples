@@ -50,9 +50,9 @@ MonoBehaviour:
   forwardPostionMultiplier: 13
   baseSpeed: 3.5
   sheepTextures:
-  - {fileID: 2800000, guid: 5a026f84717204f4c88112a1c6774c1d, type: 3}
-  - {fileID: 2800000, guid: 8ec2a22631e84b74089c805028e709e3, type: 3}
-  - {fileID: 2800000, guid: 2c3c7d885ecaf0e47b77659b5aad0aea, type: 3}
+  - {fileID: 2800000, guid: 91adb4db9100a3644a19ae4b196650e9, type: 3}
+  - {fileID: 2800000, guid: 49f64fc80af389d489c1cfb5c3a36a21, type: 3}
+  - {fileID: 2800000, guid: 8f3e3a8c53bac0c47ac888b184092f09, type: 3}
   sheepTexturesWeight:
   - 2
   - 3
