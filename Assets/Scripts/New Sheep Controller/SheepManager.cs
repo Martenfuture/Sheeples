@@ -52,7 +52,7 @@ public class SheepManager : MonoBehaviour
                 newAgent.name = "Agent " + i;
                 newSheepGroup.Add(newAgent);
                 newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
-                newAgent.GetComponent<SheepAgent>().sheepMeshObject.GetComponent<Renderer>().materials[0].SetTexture("_DetailAlbedoMap", sheepTextures[SheepCore.RandomWeightArrayIndex(sheepTexturesWeight)]);
+                newAgent.GetComponent<SheepAgent>().sheepMeshObject.GetComponent<Renderer>().materials[0].SetTexture("_BaseMap", sheepTextures[SheepCore.RandomWeightArrayIndex(sheepTexturesWeight)]);
             }
             sheepGroups.Add(new SheepGroup() { sheeps = newSheepGroup });
         }
