@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SheepAgent : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class SheepAgent : MonoBehaviour
             audioSource.PlayOneShot(RandomClip(), 0.5f);
             timer = 0;
         }
+        gameObject.GetComponent<Animator>().SetFloat("movementSpeed", gameObject.GetComponent<NavMeshAgent>().velocity.magnitude);
+        gameObject.GetComponent<Animator>().SetFloat("blendTreeSpeed", gameObject.GetComponent<NavMeshAgent>().velocity.magnitude * 0.35f);
     }
 
     AudioClip RandomClip()

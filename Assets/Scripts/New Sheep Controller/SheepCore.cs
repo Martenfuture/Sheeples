@@ -6,7 +6,12 @@ public class SheepCore
 {
     public static int RandomWeightArrayIndex(float[] actionWeight)
     {
-        float randValue = Random.value; // Randome value (chance value)
+        float sum = 0;
+        foreach (float weight in actionWeight)
+        {
+            sum += weight;
+        }
+        float randValue = Random.value * sum; // Randome value (chance value)
 
         float currentChance = 0f;
         float minChanceRange;

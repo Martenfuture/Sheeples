@@ -89,8 +89,6 @@ public class SheepManager : MonoBehaviour
                 {
                     sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
                 }
-                sheep.GetComponent<Animator>().SetFloat("movementSpeed", sheep.GetComponent<NavMeshAgent>().velocity.magnitude);
-                sheep.GetComponent<Animator>().SetFloat("blendTreeSpeed", sheep.GetComponent<NavMeshAgent>().velocity.magnitude * 0.35f);
             }
             Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
         }
