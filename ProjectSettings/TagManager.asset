@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sheep
   - AttachableObject
+  - Waypoint
   layers:
   - Default
   - TransparentFX
