@@ -65,7 +65,59 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7b88772eae0ac444a8e5fbdaf679dd44,
         type: 3}
       propertyPath: m_Name
-      value: Fish
+      value: Fish Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b88772eae0ac444a8e5fbdaf679dd44, type: 3}
+--- !u!1 &37859767348122093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356043224471405935, guid: 7b88772eae0ac444a8e5fbdaf679dd44,
+    type: 3}
+  m_PrefabInstance: {fileID: 2320718948116845698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7076916879080495322
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37859767348122093}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &3239689328267946451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b88772eae0ac444a8e5fbdaf679dd44,
+    type: 3}
+  m_PrefabInstance: {fileID: 2320718948116845698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3058829158401617105
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239689328267946451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

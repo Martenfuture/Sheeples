@@ -6,12 +6,21 @@ using System.Linq;
 [System.Serializable]
 public class AIObjects
 {
+
+
+
+
+
+
+
     public string AIGroupName   { get { return m_aiGroupName; } }
     public GameObject objectPrefab{ get { return m_prefab ; } }
     public int maxAI { get { return m_maxAI; } }
     public int spawnRate { get { return m_spawnRate; } }
     public int spawnAmount { get { return m_maxSpawnAmount; } }
     public bool randomizeStats { get { return m_randomizeStats; } }
+
+    public bool enableSpawner{ get { return m_enableSpawner; } }
 
     [Header("AI Group Stats")]
     [SerializeField]
@@ -36,6 +45,11 @@ public class AIObjects
     private bool m_randomizeStats;
 
 
+    [Header("Main Settings")]
+    [SerializeField]
+    private bool m_enableSpawner;
+
+
     public AIObjects (string Name, GameObject Prefab, int MaxAI, int SpawnRate, int SpawnAmount, bool RandomizeStats)
     {
         this.m_aiGroupName = Name;
@@ -56,8 +70,23 @@ public class AIObjects
 
 public class AISpawner : MonoBehaviour
 {
-
     public List<Transform> Waypoints = new List< Transform > ();
+
+    public float spawnTimer { get { return m_SpawnTimer; } }
+    public Vector3 spawnArea { get { return m_SpawnArea; } }
+
+    [Header("Global Stats")]
+    [Range(0f, 600f)]
+    [SerializeField]
+    private float m_SpawnTimer;
+    [SerializeField]
+    private Color m_SpawnColor = new Color(1.000f, 0.000f, 0.000f, 0.300f);
+    [SerializeField]
+    private Vector3 m_SpawnArea = new Vector3 (20f,10f,20f);
+
+
+
+
     public Transform[] WaypointsLinq;
 
     [Header("AI Groups Settings")]
@@ -73,6 +102,7 @@ public class AISpawner : MonoBehaviour
         GetWaypoints();
         RandomiseGroups();
         CreateAIGroups();
+        InvokeRepeating("SpawnNPC", 0.5f, spawnTimer);
     }
 
     
@@ -80,10 +110,55 @@ public class AISpawner : MonoBehaviour
     {
         
     }
-    /// <summary>
-    ///  Methode um zufällige Eigenschaften in die Gruppen zu befüllen
-    /// </summary>
-    void RandomiseGroups()
+
+    void SpawnNPC()
+    {
+        for (int i = 0; i< AIObject.Count(); i++)
+        {
+            if (AIObject[i].enableSpawner && AIObject[i].objectPrefab != null)
+            {
+                GameObject tempGroup = GameObject.Find(AIObject[i].AIGroupName);
+                if(tempGroup.GetComponentInChildren<Transform>().childCount <   AIObject[i].maxAI)
+                {
+                    for (int y=0; y< Random.Range(0,AIObject[i].spawnAmount); y++)
+                    {
+                Quaternion randomRotation = Quaternion.Euler(Random.Range(-20, 20), Random.Range(0, 360), 0);
+
+                GameObject tempSpawn;
+                tempSpawn = Instantiate(AIObject[i].objectPrefab, RandomPosition(), randomRotation);
+
+                tempSpawn.transform.parent = tempGroup.transform;
+
+                tempSpawn.AddComponent<AIMove>();
+                    }
+                }
+            }
+    }
+}
+
+public Vector3 RandomPosition()
+    {
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-spawnArea.x, spawnArea.x),
+            Random.Range(-spawnArea.y, spawnArea.y),
+            Random.Range(-spawnArea.z, spawnArea.z)
+            );
+        randomPosition = transform.TransformPoint(randomPosition * .5f);
+        return randomPosition;
+    }
+
+    public Vector3 RandomWaypoint()
+    {
+        int randomWP = Random.Range(0, (Waypoints.Count - 1));
+        Vector3 randomWaypoint = Waypoints[randomWP].transform.position;
+        return randomWaypoint;
+    }
+
+
+/// <summary>
+///  Methode um zufällige Eigenschaften in die Gruppen zu befüllen
+/// </summary>
+void RandomiseGroups()
     {
         for (int i = 0; i < AIObject.Count(); i++)
         {
@@ -120,4 +195,13 @@ public class AISpawner : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = m_SpawnColor;
+        Gizmos.DrawCube(transform.position, spawnArea);
+    }
+
+
+
 }
