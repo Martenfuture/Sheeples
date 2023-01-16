@@ -15,14 +15,12 @@ public class AIMove : MonoBehaviour
 
     private Animator m_animator;
     private float m_speed;
+
+
     private float m_scale;
 
     private Collider m_collider;
-    private RaycastHit m_hit;
-
-
-
-
+   
 
 
     // Start is called before the first frame update
@@ -39,6 +37,17 @@ public class AIMove : MonoBehaviour
     {
         float m_scale = Random.Range(0f, 4f);
         transform.localScale += new Vector3(m_scale * 1.5f, m_scale, m_scale);
+
+        if(transform.GetComponent<Collider>() != null && transform.GetComponent<Collider>().enabled == true)
+        {
+            m_collider = transform.GetComponent<Collider>();
+
+        }
+        else if (transform.GetComponentInChildren<Collider>() != null && transform.GetComponentInChildren<Collider>().enabled == true)
+        {
+            m_collider = transform.GetComponentInChildren<Collider>();
+        }
+
     }
 
     void Update()
@@ -52,10 +61,25 @@ public class AIMove : MonoBehaviour
         {
             RotateNPC(m_waypoint, m_speed);
             transform.position = Vector3.MoveTowards(transform.position, m_waypoint, m_speed * Time.deltaTime);
+
+            ColliderNPC();
         }
         if (transform.position == m_waypoint)
         {
             m_hasTarget = false;
+        }
+    }
+
+
+    Vector3 GetWaypoint(bool isRandom)
+    {
+        if(isRandom)
+        {
+            return m_AIManager.RandomPosition();
+        }
+        else
+        {
+            return m_AIManager.RandomWaypoint();
         }
     }
 
@@ -64,7 +88,7 @@ public class AIMove : MonoBehaviour
         m_waypoint = m_AIManager.RandomWaypoint();
         if (m_lastWaypoint == m_waypoint)
         {
-            m_waypoint = m_AIManager.RandomWaypoint();
+            m_waypoint = GetWaypoint(true);
             return false;
 
         }
@@ -76,6 +100,25 @@ public class AIMove : MonoBehaviour
             return true;
         }
     }
+
+    void ColliderNPC()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, transform.localScale.z))
+        {     
+        if (hit.collider == m_collider | hit.collider.tag == "waypoint")
+            {
+                return;
+            }
+            int randomNum = Random.Range(1, 100);
+            if (randomNum < 40)
+                m_hasTarget = false;
+            Debug.Log(hit.collider.transform.parent.name + " " + hit.collider.transform.parent.position);
+        }
+
+    }
+
+
 
     void RotateNPC (Vector3 waypoint, float currentSpeed)
     {
