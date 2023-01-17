@@ -10,7 +10,7 @@ public class DogSheepTrigger : MonoBehaviour
     {
         if(other.tag == "Sheep")
         {
-            SheepManager.instance.SetTargetDirection(transform.position, other.GetComponent<SheepAgent>().sheepGroupId);
+            SheepManager.instance.SetTargetDirection(transform.position, other.GetComponent<SheepAgent>().sheepGroupId, false);
 
             if (!colliderObjects.Contains(other.gameObject))
             {

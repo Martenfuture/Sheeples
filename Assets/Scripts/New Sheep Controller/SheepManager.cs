@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,6 +28,8 @@ public class SheepManager : MonoBehaviour
 
     const float AgentDensity = 0.5f;
 
+    bool stuckCheck;
+
     private void Awake()
     {
         instance = this;
@@ -53,6 +56,7 @@ public class SheepManager : MonoBehaviour
                 newSheepGroup.Add(newAgent);
                 newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
                 newAgent.GetComponent<SheepAgent>().sheepMeshObject.GetComponent<Renderer>().materials[0].SetTexture("_BaseMap", sheepTextures[SheepCore.RandomWeightArrayIndex(sheepTexturesWeight)]);
+                newAgent.GetComponent<SheepAgent>().sheepGroupId = s;
             }
             sheepGroups.Add(new SheepGroup() { sheeps = newSheepGroup });
         }
@@ -60,27 +64,14 @@ public class SheepManager : MonoBehaviour
 
     void Update()
     {
+        if (!stuckCheck)
+        {
+            StartCoroutine(SheepStuckCheck());
+        }
+
         foreach(SheepGroup sheepGroup in sheepGroups)
         {
-            targetPosition = Vector3.zero;
-            Vector3 direction = Vector3.zero;
-            foreach (GameObject sheep in sheepGroup.sheeps)
-            {
-                direction += sheep.transform.forward;
-            }
-            direction /= sheepGroup.sheeps.Count;
-            direction.Normalize();
-
-            sheepGroup.middlePosition = Vector3.zero;
-            foreach (GameObject sheep in sheepGroup.sheeps)
-            {
-                sheepGroup.middlePosition += sheep.transform.position;
-            }
-            sheepGroup.targetDirectionStrength += targetDirectionStrengthMultiplier * Time.deltaTime;
-            direction += sheepGroup.targetDirection * Mathf.Lerp(3f, 0, sheepGroup.targetDirectionStrength);
-            direction.Normalize();
-            sheepGroup.middlePosition /= sheepGroup.sheeps.Count;
-            targetPosition = sheepGroup.middlePosition + direction * forwardPostionMultiplier;
+            targetPosition = CalculateTargetPosition(sheepGroup);
 
         
             foreach (GameObject sheep in sheepGroup.sheeps)
@@ -94,7 +85,32 @@ public class SheepManager : MonoBehaviour
         }
     }
 
-    public void SetTargetDirection(Vector3 dogPostion, int sheepGroupId)
+    private Vector3 CalculateTargetPosition(SheepGroup sheepGroup)
+    {
+        targetPosition = Vector3.zero;
+        Vector3 direction = Vector3.zero;
+        foreach (GameObject sheep in sheepGroup.sheeps)
+        {
+            direction += sheep.transform.forward;
+        }
+        direction /= sheepGroup.sheeps.Count;
+        direction.Normalize();
+
+        sheepGroup.middlePosition = Vector3.zero;
+        foreach (GameObject sheep in sheepGroup.sheeps)
+        {
+            sheepGroup.middlePosition += sheep.transform.position;
+        }
+        sheepGroup.targetDirectionStrength += targetDirectionStrengthMultiplier * Time.deltaTime;
+        direction += sheepGroup.targetDirection * Mathf.Lerp(3f, 0, sheepGroup.targetDirectionStrength);
+        direction.Normalize();
+        sheepGroup.middlePosition /= sheepGroup.sheeps.Count;
+        targetPosition = sheepGroup.middlePosition + direction * forwardPostionMultiplier;
+
+        return targetPosition;
+    }
+
+    public void SetTargetDirection(Vector3 dogPostion, int sheepGroupId, bool randomRotation)
     {
         //Debug.Log("Sheep Group Count: " + sheepGroups.Count + " / Sheep Group ID: " + sheepGroupId);
         if (sheepGroups[sheepGroupId] == null)
@@ -104,6 +120,11 @@ public class SheepManager : MonoBehaviour
         }
         Vector3 direction = sheepGroups[sheepGroupId].middlePosition - dogPostion;
         direction.Normalize();
+        if (randomRotation)
+        {
+            float randomAngle = Random.Range(-60f, 60f);
+            direction = Quaternion.Euler(0, randomAngle, 0) * direction;
+        }
         sheepGroups[sheepGroupId].targetDirection = direction;
         sheepGroups[sheepGroupId].targetDirectionStrength = 0;
     }
@@ -190,9 +211,54 @@ public class SheepManager : MonoBehaviour
     IEnumerator StopSheepDelay(GameObject sheep)
     {
         yield return new WaitForSeconds(1);
-        SetTargetDirection(sheepGroups[0].middlePosition, sheep.GetComponent<SheepAgent>().sheepGroupId);
+        SetTargetDirection(sheepGroups[0].middlePosition, sheep.GetComponent<SheepAgent>().sheepGroupId, false);
         yield return new WaitForSeconds(Random.Range(6,10));
         sheep.GetComponent<NavMeshAgent>().speed = 0;
     }
 
+    // Stecks if the sheeps cant reach the destination or have been in the same distance, runs every 2 seconds
+    IEnumerator SheepStuckCheck()
+    {
+        stuckCheck = true;
+
+        foreach (SheepGroup sheepGroup in sheepGroups)
+        {
+            NavMeshPath path = new NavMeshPath();
+            Vector3 sheepGroupTargetPosition = CalculateTargetPosition(sheepGroup);
+            if (!NavMesh.CalculatePath(sheepGroup.middlePosition, sheepGroupTargetPosition, NavMesh.AllAreas, path))
+            {
+                //Debug.Log("NOT REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
+                SetTargetDirection(sheepGroupTargetPosition, sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId, true);
+            }
+            else if (Vector3.Distance(sheepGroup.middlePosition, sheepGroup.lastPosition) < 1)
+            {
+                SetTargetDirection(sheepGroupTargetPosition, sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId, true);
+            }
+            sheepGroup.lastPosition = sheepGroup.middlePosition;
+        }
+
+        yield return new WaitForSeconds(2);
+        stuckCheck = false;
+
+    }
+
+
+    ////////////DEBUG//////////////////
+
+    public void DebugPathCheck()
+    {
+        foreach (SheepGroup sheepGroup in sheepGroups)
+        {
+            NavMeshPath path = new NavMeshPath();
+            Vector3 sheepGroupTargetPosition = CalculateTargetPosition(sheepGroup);
+            if (!NavMesh.CalculatePath(sheepGroup.middlePosition, sheepGroupTargetPosition, NavMesh.AllAreas, path))
+            {
+                Debug.Log("NOT REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
+            } 
+            else
+            {
+                Debug.Log("REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
+            }
+        }
+    }
 }
