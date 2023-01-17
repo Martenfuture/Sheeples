@@ -8928,17 +8928,17 @@ PrefabInstance:
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.060686834
+      value: 0.060686864
       objectReference: {fileID: 0}
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6314567
+      value: -0.63145673
       objectReference: {fileID: 0}
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5741678
+      value: 0.5741677
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b47f5c74a6bf71b4ca069e78d5027110, type: 3}
@@ -35942,7 +35942,7 @@ PrefabInstance:
     - target: {fileID: 2377893013271817449, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06068684
+      value: 0.060686827
       objectReference: {fileID: 0}
     - target: {fileID: 2377893013271817449, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
@@ -36098,6 +36098,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Orbits.Array.data[1].m_Radius
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872530217885631019, guid: e2810e33bc5cceb47bd17069ac919366,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2810e33bc5cceb47bd17069ac919366, type: 3}
@@ -55811,6 +55816,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1770822070}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1771482717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4372395761746919543, guid: e2810e33bc5cceb47bd17069ac919366,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122094228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1771482718
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771482717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5662898
+  m_Height: 1.428833
+  m_Direction: 2
+  m_Center: {x: 0.0000000019892246, y: 0.6075827, z: 0.11541748}
 --- !u!1001 &1771605644
 PrefabInstance:
   m_ObjectHideFlags: 0
