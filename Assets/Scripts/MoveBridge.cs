@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MoveBridge : MonoBehaviour
 {
-
+    public float speed = 1f;
    
 
     // Update is called once per frame
     void Update()
     {
-        transform.localEulerAngles = new Vector3(0, 345, 0);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
     }
 
     
