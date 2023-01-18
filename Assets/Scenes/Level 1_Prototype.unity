@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.47708285, g: 0.58003354, b: 0.856252, a: 1}
+  m_IndirectSpecularColor: {r: 0.47686803, g: 0.58004665, b: 0.8562652, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8776,6 +8776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Orbits.Array.data[1].m_Radius
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 437404916107771857, guid: b47f5c74a6bf71b4ca069e78d5027110,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 721817728019172182, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
@@ -36014,17 +36019,17 @@ PrefabInstance:
     - target: {fileID: 2552547558504039239, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.011949895
+      value: 0.011949865
       objectReference: {fileID: 0}
     - target: {fileID: 2552547558504039239, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.71518606
+      value: -0.715186
       objectReference: {fileID: 0}
     - target: {fileID: 2552547558504039239, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.68615586
+      value: 0.6861559
       objectReference: {fileID: 0}
     - target: {fileID: 3095026383368804578, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
@@ -36140,6 +36145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Orbits.Array.data[1].m_Radius
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795991876359432641, guid: e2810e33bc5cceb47bd17069ac919366,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6991313677883588791, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
