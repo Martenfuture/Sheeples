@@ -20,6 +20,8 @@ public class AIMove : MonoBehaviour
     private float m_scale;
 
     private Collider m_collider;
+
+    Quaternion m_rotation;
    
 
 
@@ -30,6 +32,7 @@ public class AIMove : MonoBehaviour
         m_animator = GetComponent<Animator>();
 
         SetupNPC();
+        FindTarget();
     }
     // Update is called once per frame
 
@@ -52,53 +55,30 @@ public class AIMove : MonoBehaviour
 
     void Update()
     {
-        if(!m_hasTarget)
-        {
-            m_hasTarget = CanFindTarget();
-
-        }
-        else
-        {
-            RotateNPC(m_waypoint, m_speed);
-            transform.position = Vector3.MoveTowards(transform.position, m_waypoint, m_speed * Time.deltaTime);
-
-            ColliderNPC();
-        }
         if (transform.position == m_waypoint)
         {
-            m_hasTarget = false;
+            FindTarget();
         }
+        RotateNPC(m_waypoint, m_speed);
+        transform.position = Vector3.MoveTowards(transform.position, m_waypoint, m_speed * Time.deltaTime);
+
+        ColliderNPC();
     }
 
-
-    Vector3 GetWaypoint(bool isRandom)
+    private void FindTarget(float start = 1f, float end = 7f)
     {
-        if(isRandom)
+        m_lastWaypoint = m_waypoint;
+        bool isWaypointSame = false;
+        while (!isWaypointSame)
         {
-            return m_AIManager.RandomPosition();
+            m_waypoint = m_AIManager.RandomWaypoint();
+            if (m_waypoint != m_lastWaypoint)
+            {
+                isWaypointSame = true;
+            }
         }
-        else
-        {
-            return m_AIManager.RandomWaypoint();
-        }
-    }
-
-    bool CanFindTarget(float start = 1f, float end = 7f)
-    {
-        m_waypoint = m_AIManager.RandomWaypoint();
-        if (m_lastWaypoint == m_waypoint)
-        {
-            m_waypoint = GetWaypoint(true);
-            return false;
-
-        }
-        else
-        {
-            m_lastWaypoint = m_waypoint;
-            m_speed = Random.Range(start, end);
-            m_animator.speed = m_speed;
-            return true;
-        }
+        m_speed = Random.Range(start, end);
+        m_animator.speed = m_speed;
     }
 
     void ColliderNPC()
@@ -106,7 +86,7 @@ public class AIMove : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, transform.localScale.z))
         {     
-        if (hit.collider == m_collider | hit.collider.tag == "waypoint")
+            if (hit.collider == m_collider | hit.collider.tag == "waypoint")
             {
                 return;
             }
@@ -123,7 +103,8 @@ public class AIMove : MonoBehaviour
     void RotateNPC (Vector3 waypoint, float currentSpeed)
     {
         float TurnSpeed = currentSpeed * Random.Range(1f, 3f);
-        Vector3 LookAt = waypoint - this.transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(LookAt), TurnSpeed * Time.deltaTime);
+        Vector3 LookAt = waypoint - transform.position;
+        m_rotation = Quaternion.Slerp(m_rotation, Quaternion.LookRotation(LookAt), TurnSpeed * Time.deltaTime);
+        transform.rotation = m_rotation * Quaternion.Euler(0, -90, 0);
     }
 }
