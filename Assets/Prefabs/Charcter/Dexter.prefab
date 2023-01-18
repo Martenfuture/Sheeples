@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52694252e9a509746931a053fc04780c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearObjects: []
 --- !u!1 &3710615604747219595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1087,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 030eafa611e9b2e4daf4c17a09a2ab30, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 2c71b08711ef2ec4cad40c0c858b1805,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5259a4599cca5e547bd8707e3a1daba4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c71b08711ef2ec4cad40c0c858b1805, type: 3}
 --- !u!4 &4027922769972370125 stripped
@@ -1213,6 +1219,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fad629e0-31cd-41ec-b3a6-6950d654a829
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbe1741e-f850-49f7-96e3-b1e514f95d14
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

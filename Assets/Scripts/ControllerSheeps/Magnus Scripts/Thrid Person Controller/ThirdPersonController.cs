@@ -58,6 +58,12 @@ public class ThirdPersonController : MonoBehaviour
         player.Disable();
     }
 
+    private void Update()
+    {
+        gameObject.GetComponent<Animator>().SetFloat("movementSpeed", gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+        Debug.Log(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+    }
+
     private void FixedUpdate()
     {
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
