@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class FinishArea : MonoBehaviour
 {
+    int sheepsInFinishArea;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Sheep")
+        if (other.tag == "Sheep" && !SheepManager.instance.sheepGroups[other.GetComponent<SheepAgent>().sheepGroupId].insideFinishArea)
         {
-            SheepManager.instance.EnterFinishArea(other.GetComponent<SheepAgent>().sheepGroupId, gameObject);
+            int groupId = other.GetComponent<SheepAgent>().sheepGroupId;
+            SheepManager.instance.EnterFinishArea(groupId, gameObject);
+            sheepsInFinishArea += SheepManager.instance.sheepGroups[groupId].sheeps.Count;
+            QuestSheepCount.instance.SetCounter(sheepsInFinishArea);
+
+            if (sheepsInFinishArea >= SheepManager.instance.sheepCountTotal)
+            {
+                QuestSheepCount.instance.CompleteQuest();
+            }
         }
     }
 }

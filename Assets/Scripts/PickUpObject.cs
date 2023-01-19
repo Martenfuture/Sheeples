@@ -28,7 +28,7 @@ public class PickUpObject : MonoBehaviour
     {
         if (callbackContext.started)
         {
-            Debug.Log("Interact with Object:" + nearObjects.Count);
+            //Debug.Log("Interact with Object:" + nearObjects.Count);
             if (attachtedObject == null)
             {
                 if (nearObjects.Count > 0)
@@ -38,6 +38,7 @@ public class PickUpObject : MonoBehaviour
                     nearestObject.transform.SetParent(gameObject.transform, false);
                     nearestObject.transform.localPosition = new Vector3(0, 0.723999977f, 1.90100002f);
                     nearestObject.GetComponent<Collider>().enabled = false;
+                    nearestObject.GetComponent<Rigidbody>().isKinematic = true;
                     nearObjects.Remove(nearestObject);
                 }
             }
@@ -45,6 +46,7 @@ public class PickUpObject : MonoBehaviour
             {
                 nearestObject.transform.SetParent(null, true);
                 nearestObject.GetComponent<Collider>().enabled = true;
+                nearestObject.GetComponent<Rigidbody>().isKinematic = false;
                 attachtedObject = null;
             }
         }

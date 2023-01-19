@@ -10,9 +10,10 @@ public class SheepManager : MonoBehaviour
     public static SheepManager instance = null;
 
     public GameObject agentPrefab;
-    List<SheepGroup> sheepGroups = new List<SheepGroup>();
+    public List<SheepGroup> sheepGroups = new List<SheepGroup>();
     public float forwardPostionMultiplier;
     public float baseSpeed;
+    public int sheepCountTotal;
 
     public Texture[] sheepTextures;
     public float[] sheepTexturesWeight;
@@ -57,6 +58,7 @@ public class SheepManager : MonoBehaviour
                 newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
                 newAgent.GetComponent<SheepAgent>().sheepMeshObject.GetComponent<Renderer>().materials[0].SetTexture("_BaseMap", sheepTextures[SheepCore.RandomWeightArrayIndex(sheepTexturesWeight)]);
                 newAgent.GetComponent<SheepAgent>().sheepGroupId = s;
+                sheepCountTotal++;
             }
             sheepGroups.Add(new SheepGroup() { sheeps = newSheepGroup });
         }
@@ -203,7 +205,7 @@ public class SheepManager : MonoBehaviour
             Vector3 walkPosition = new Vector3(finishArea.transform.position.x + randomCirclePosition.x, finishArea.transform.position.y, finishArea.transform.position.z + randomCirclePosition.y);
             sheep.GetComponent<NavMeshAgent>().SetDestination(walkPosition);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
 
         StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
     }
