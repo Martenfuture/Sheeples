@@ -80,6 +80,11 @@ public class SheepManager : MonoBehaviour
             {
                 if (!sheepGroup.insideFinishArea)
                 {
+                    NavMeshHit hit;
+                    if (NavMesh.SamplePosition(targetPosition, out hit, 4.0f, NavMesh.AllAreas))
+                    {
+                        targetPosition = hit.position;
+                    }
                     sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
                 }
             }
@@ -229,7 +234,7 @@ public class SheepManager : MonoBehaviour
             Vector3 sheepGroupTargetPosition = CalculateTargetPosition(sheepGroup);
             if (!NavMesh.CalculatePath(sheepGroup.middlePosition, sheepGroupTargetPosition, NavMesh.AllAreas, path))
             {
-                //Debug.Log("NOT REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
+                Debug.Log("NOT REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
                 SetTargetDirection(sheepGroupTargetPosition, sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId, true);
             }
             else if (Vector3.Distance(sheepGroup.middlePosition, sheepGroup.lastPosition) < 1)

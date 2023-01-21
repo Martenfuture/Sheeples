@@ -17,6 +17,7 @@ public class FinishArea : MonoBehaviour
             if (sheepsInFinishArea >= SheepManager.instance.sheepCountTotal)
             {
                 QuestSheepCount.instance.CompleteQuest();
+                ManageScene.instance.ShowFinishUI();
             }
         }
     }
