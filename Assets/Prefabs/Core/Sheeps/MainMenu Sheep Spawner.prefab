@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3763518848948100930}
-  - component: {fileID: 3763518848948100931}
+  - component: {fileID: 4578654750017994038}
   m_Layer: 0
   m_Name: MainMenu Sheep Spawner
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3763518848948100931
+--- !u!114 &4578654750017994038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e0f81db961f574abbf699390b0d81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheepCount: 30
-  agentPrefab: {fileID: 0}
+  sheepCount: 15
+  agentPrefab: {fileID: 3453897570518886389, guid: 1c59425c135447d4288a950985387c07,
+    type: 3}
   StartArea: {fileID: 3763518849788857313}
   EndArea: {fileID: 3763518849388760649}
-  baseSpeed: 3.5
+  baseSpeed: 2
   sheepTextures:
   - {fileID: 2800000, guid: 91adb4db9100a3644a19ae4b196650e9, type: 3}
   - {fileID: 2800000, guid: 49f64fc80af389d489c1cfb5c3a36a21, type: 3}

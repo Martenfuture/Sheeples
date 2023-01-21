@@ -8,7 +8,7 @@ public class MainMenuSheepEnd : MonoBehaviour
     {
         if (other.tag == "Sheep")
         {
-            transform.parent.GetComponent<MainMenuSheepSpawner>().ReachEndArea(other.gameObject);
+            transform.parent.GetComponent<MainMenuPathSheepSpawner>().ReachEndArea(other.gameObject);
         }
     }
 }
