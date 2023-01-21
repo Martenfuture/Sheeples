@@ -14,6 +14,8 @@ public class SheepAgent : MonoBehaviour
     public GameObject sheepMeshObject;
     float timer;
 
+    bool setAnimation = true;
+
     private void Start()
     {
         timeBetweenShots = Random.Range(5, 30);
@@ -26,8 +28,22 @@ public class SheepAgent : MonoBehaviour
             audioSource.PlayOneShot(RandomClip(), 0.5f);
             timer = 0;
         }
+
+        if (setAnimation)
+        {
+            StartCoroutine(SetAnimationDelay());
+        }
+
+    }
+
+    IEnumerator SetAnimationDelay()
+    {
+        setAnimation = false;
+        yield return new WaitForSeconds(0.5f);
+
         gameObject.GetComponent<Animator>().SetFloat("movementSpeed", gameObject.GetComponent<NavMeshAgent>().velocity.magnitude);
         gameObject.GetComponent<Animator>().SetFloat("blendTreeSpeed", gameObject.GetComponent<NavMeshAgent>().velocity.magnitude * 0.35f);
+        setAnimation = true;
     }
 
     AudioClip RandomClip()

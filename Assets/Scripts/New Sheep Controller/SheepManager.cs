@@ -30,6 +30,7 @@ public class SheepManager : MonoBehaviour
     const float AgentDensity = 0.5f;
 
     bool stuckCheck;
+    bool updatePostion = true;
 
     private void Awake()
     {
@@ -70,25 +71,28 @@ public class SheepManager : MonoBehaviour
         {
             StartCoroutine(SheepStuckCheck());
         }
-
-        foreach(SheepGroup sheepGroup in sheepGroups)
+        if (updatePostion)
         {
-            targetPosition = CalculateTargetPosition(sheepGroup);
-
-        
-            foreach (GameObject sheep in sheepGroup.sheeps)
+            StartCoroutine(UpdatePositionDelay());
+            foreach (SheepGroup sheepGroup in sheepGroups)
             {
-                if (!sheepGroup.insideFinishArea)
+                targetPosition = CalculateTargetPosition(sheepGroup);
+
+
+                foreach (GameObject sheep in sheepGroup.sheeps)
                 {
-                    NavMeshHit hit;
-                    if (NavMesh.SamplePosition(targetPosition, out hit, 4.0f, NavMesh.AllAreas))
+                    if (!sheepGroup.insideFinishArea)
                     {
-                        targetPosition = hit.position;
+                        NavMeshHit hit;
+                        if (NavMesh.SamplePosition(targetPosition, out hit, 4.0f, NavMesh.AllAreas))
+                        {
+                            targetPosition = hit.position;
+                        }
+                        sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
                     }
-                    sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
                 }
+                //Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
             }
-            Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
         }
     }
 
@@ -199,6 +203,13 @@ public class SheepManager : MonoBehaviour
             }
             StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
         }
+    }
+
+    IEnumerator UpdatePositionDelay()
+    {
+        updatePostion = false;
+        yield return new WaitForSeconds(0.5f);
+        updatePostion = true;
     }
 
     IEnumerator SheepInsideFinishArea(int sheepGroupId, GameObject finishArea)
