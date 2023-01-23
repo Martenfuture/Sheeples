@@ -20,9 +20,9 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -8801602056364711565, guid: 85f1c7b1a7960514ab5e99ec03e8da19,
       type: 3}
-    m_Threshold: 13
+    m_Threshold: 1
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 2.75
     m_CycleOffset: 0
     m_DirectBlendParameter: movementSpeed
     m_Mirror: 0
@@ -31,7 +31,7 @@ BlendTree:
       type: 3}
     m_Threshold: 13
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 2.75
     m_CycleOffset: 0
     m_DirectBlendParameter: movementSpeed
     m_Mirror: 0
@@ -40,7 +40,7 @@ BlendTree:
       type: 3}
     m_Threshold: 18
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 2.35
     m_CycleOffset: 0
     m_DirectBlendParameter: movementSpeed
     m_Mirror: 0
@@ -110,6 +110,12 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: movementSpeed
     m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: jumping
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

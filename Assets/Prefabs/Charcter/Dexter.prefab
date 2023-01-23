@@ -1175,8 +1175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementForce: 2
   jumpForce: 5
-  maxSpeed: 5
+  maxWalkSpeed: 7
+  maxSprintSpeed: 20
   playerCamera: {fileID: 7823416847440096346}
+  RespawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &4933405575038394440
 MonoBehaviour:
   m_ObjectHideFlags: 0

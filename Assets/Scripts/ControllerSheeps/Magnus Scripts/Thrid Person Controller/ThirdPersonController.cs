@@ -18,8 +18,9 @@ public class ThirdPersonController : MonoBehaviour
     private float movementForce = 1f;
     [SerializeField]
     private float jumpForce = 5f;
-    [SerializeField]
-    private float maxSpeed = 12f;
+    private float maxSpeed;
+    [SerializeField] float maxWalkSpeed;
+    [SerializeField] float maxSprintSpeed;
     private Vector3 forceDirection = Vector3.zero;
 
     [SerializeField]
@@ -92,11 +93,11 @@ public class ThirdPersonController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            maxSpeed = 20f;
+            maxSpeed = maxSprintSpeed;
         }
         else
         {
-            maxSpeed = 12f;
+            maxSpeed = maxWalkSpeed;
         }
     }
 
@@ -127,9 +128,10 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if (IsGrounded())
+        if (IsGrounded() && jumpForce != 0)
         {
             forceDirection += Vector3.up * jumpForce;
+            gameObject.GetComponent<Animator>().SetTrigger("jumping");
         }
     }
 
