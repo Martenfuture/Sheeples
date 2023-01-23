@@ -37,7 +37,7 @@ public class AIObjects
     [SerializeField]
     private int m_spawnRate;
 
-    [Range(0f, 10f)]
+    [Range(0f, 20f)]
     [SerializeField]
     private int m_maxSpawnAmount;
 
