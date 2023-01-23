@@ -26,6 +26,15 @@ public class ThirdPersonController : MonoBehaviour
     private Camera playerCamera;
     private Animator animator;
 
+    public Vector3 RespawnPosition;
+
+    void Start()
+    {
+        RespawnPosition = transform.position;
+    }
+
+
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -137,4 +146,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
+
+
+
 }

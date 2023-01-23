@@ -11,8 +11,8 @@ public class Respawn : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-    { 
-        player.transform.position = respawnPoint.transform.position;
+    {
+            other.transform.position = other.GetComponent<ThirdPersonController>().RespawnPosition;
     }
 }
 }
