@@ -29,15 +29,15 @@ public class AIObjects
     [SerializeField]
     private GameObject m_prefab;
 
-    [Range(0f, 30f)]
+    [Range(0f, 100f)]
     [SerializeField]
     private int m_maxAI;
 
-    [Range(0f, 20f)]
+    [Range(0f, 90f)]
     [SerializeField]
     private int m_spawnRate;
 
-    [Range(0f, 20f)]
+    [Range(0f, 90f)]
     [SerializeField]
     private int m_maxSpawnAmount;
 
