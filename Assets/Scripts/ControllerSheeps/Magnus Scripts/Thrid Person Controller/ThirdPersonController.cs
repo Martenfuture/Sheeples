@@ -11,17 +11,21 @@ public class ThirdPersonController : MonoBehaviour
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
+    private InputAction run;
 
     //movement fields
     private Rigidbody rb;
     [SerializeField]
     private float movementForce = 1f;
+    private float maxForce = 50f;
     [SerializeField]
     private float jumpForce = 5f;
-    private float maxSpeed;
+    private float maxSpeed = 10f;
     [SerializeField] float maxWalkSpeed;
     [SerializeField] float maxSprintSpeed;
     private Vector3 forceDirection = Vector3.zero;
+
+    public bool isRunning;
 
     [SerializeField]
     private Camera playerCamera;
@@ -44,6 +48,7 @@ public class ThirdPersonController : MonoBehaviour
         //playerActionsAsset = new ThirdPersonActionsAsset();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
+        
     }
 
     private void OnEnable()
@@ -55,6 +60,7 @@ public class ThirdPersonController : MonoBehaviour
         player.FindAction("Jump").started += DoJump;
         player.FindAction("Attack").started += DoAttack;
         move = player.FindAction("Move");
+        player.FindAction("Run").started += DoRun;
         player.Enable();
     }
 
@@ -65,6 +71,7 @@ public class ThirdPersonController : MonoBehaviour
         //playerActionsAsset.Player.Disable();
         player.FindAction("Jump").started -= DoJump;
         player.FindAction("Attack").started -= DoAttack;
+        player.FindAction("Run").started -= DoRun;
         player.Disable();
     }
 
@@ -89,6 +96,7 @@ public class ThirdPersonController : MonoBehaviour
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
+
         LookAt();
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -98,6 +106,16 @@ public class ThirdPersonController : MonoBehaviour
         else
         {
             maxSpeed = maxWalkSpeed;
+        }
+
+        
+    }
+    private void DoRun(InputAction.CallbackContext obj)
+    {
+        if (IsGrounded() && maxForce != 0)
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * maxForce;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * maxForce;
         }
     }
 
