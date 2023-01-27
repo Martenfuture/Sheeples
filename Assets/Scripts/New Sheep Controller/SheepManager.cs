@@ -91,9 +91,9 @@ public class SheepManager : MonoBehaviour
                         sheep.GetComponent<NavMeshAgent>().SetDestination(targetPosition);
                     }
                 }
-                //Debug.DrawRay(targetPosition, transform.up * 10, Color.green);
             }
         }
+        //DebugPositionRay();
     }
 
     private Vector3 CalculateTargetPosition(SheepGroup sheepGroup)
@@ -143,6 +143,10 @@ public class SheepManager : MonoBehaviour
     // Split sheep from main group if bool SplitGroup is true it splits a group, if not only one
     public void SplitSheepListRandom(bool SplitGroup)
     {
+        if (sheepGroups[0].sheeps.Count >= 1)
+        {
+            return;
+        }
         GameObject randomSheep = sheepGroups[0].sheeps[Random.Range(0, sheepGroups[0].sheeps.Count)];
         float groupBaseSpeed = Random.Range(2, 3.5f);
         List<GameObject> newSheepGroup = new List<GameObject>();
@@ -277,6 +281,15 @@ public class SheepManager : MonoBehaviour
             {
                 Debug.Log("REACHABLE: " + sheepGroup.sheeps[0].GetComponent<SheepAgent>().sheepGroupId);
             }
+        }
+    }
+
+    private void DebugPositionRay()
+    {
+        foreach (SheepGroup sheepGroup in sheepGroups)
+        {
+            Vector3 destination = sheepGroup.sheeps[0].GetComponent<NavMeshAgent>().destination;
+            Debug.DrawRay(destination, transform.up * 10, Color.green);
         }
     }
 }

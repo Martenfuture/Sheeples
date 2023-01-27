@@ -86,7 +86,7 @@ NavMeshAgent:
   m_Height: 1.36
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1540646197459649786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f301053e600b7f042b1a831f2402a04d, type: 3}
   timeBetweenShots: 5
   sheepMeshObject: {fileID: 8102944194469252838}
+  isWaiting: 0
 --- !u!95 &5854566486077298069
 Animator:
   serializedVersion: 4
