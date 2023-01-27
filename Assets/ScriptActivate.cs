@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScriptActivate : MonoBehaviour
 {
 
-    public GameObject BrückeMitGelände_02(1);
+    public GameObject Manager;
     MoveBridge script;
 
 
@@ -14,11 +14,19 @@ public class ScriptActivate : MonoBehaviour
     void Start()
     {
 
-        script = BrückeMitGelände_02.GetComponent<MoveBridge>();
-        script.enabled = true;
+        script = Manager.GetComponent<MoveBridge>();
 
+        
 
     }
 
-  
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            script.enabled = true;
+        }
+    }
+
+
 }

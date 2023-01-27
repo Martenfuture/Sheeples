@@ -40775,6 +40775,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Br\xFCckeMitGel\xE4nde_02 (1)"
       objectReference: {fileID: 0}
+    - target: {fileID: 6604548346614827409, guid: 9a0c7d3bec04f1949a29e3fd8ac4bfb8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a0c7d3bec04f1949a29e3fd8ac4bfb8, type: 3}
 --- !u!4 &1252838852 stripped
@@ -45849,12 +45854,12 @@ PrefabInstance:
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09437286
+      value: -0.094372846
       objectReference: {fileID: 0}
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.43344966
+      value: -0.43344963
       objectReference: {fileID: 0}
     - target: {fileID: 8201399609978554815, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
@@ -47865,6 +47870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1260d94637a6a7248af8b7552f499b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 387823654}
 --- !u!1001 &1510258505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64671,7 +64677,7 @@ PrefabInstance:
     - target: {fileID: 2377893013271817449, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.11383735
+      value: -0.11383726
       objectReference: {fileID: 0}
     - target: {fileID: 2377893013271817449, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
