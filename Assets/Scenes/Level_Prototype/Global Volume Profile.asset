@@ -489,7 +489,7 @@ MonoBehaviour:
     m_Value: {r: 0.20754719, g: 0.103703655, b: 0.0753827, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.6440181, b: 0.2028302, a: 1}
+    m_Value: {r: 1, g: 0.76528955, b: 0.4764151, a: 1}
   balance:
     m_OverrideState: 1
     m_Value: 3.8
