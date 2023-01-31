@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerController : MonoBehaviour
 {
     public static TimerController instance;
 
-    public Text timeCounter;
+    public TextMeshProUGUI timeCounter;
 
     private TimeSpan timePlaying;
     private bool timerGoing;
