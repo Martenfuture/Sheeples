@@ -61,6 +61,7 @@ public class ThirdPersonController : MonoBehaviour
         player.FindAction("Attack").started += DoAttack;
         move = player.FindAction("Move");
         player.FindAction("Run").started += DoRun;
+        player.FindAction("Run").canceled += StopRun;
         player.Enable();
     }
 
@@ -72,6 +73,7 @@ public class ThirdPersonController : MonoBehaviour
         player.FindAction("Jump").started -= DoJump;
         player.FindAction("Attack").started -= DoAttack;
         player.FindAction("Run").started -= DoRun;
+        player.FindAction("Run").canceled -= StopRun;
         player.Disable();
     }
 
@@ -99,24 +101,15 @@ public class ThirdPersonController : MonoBehaviour
 
         LookAt();
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            maxSpeed = maxSprintSpeed;
-        }
-        else
-        {
-            maxSpeed = maxWalkSpeed;
-        }
-
         
     }
     private void DoRun(InputAction.CallbackContext obj)
     {
-        if (IsGrounded() && maxForce != 0)
-        {
-            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * maxForce;
-            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * maxForce;
-        }
+        maxSpeed = maxSprintSpeed;
+    }
+    private void StopRun(InputAction.CallbackContext obj)
+    {
+        maxSpeed = maxWalkSpeed;
     }
 
     private void LookAt()
