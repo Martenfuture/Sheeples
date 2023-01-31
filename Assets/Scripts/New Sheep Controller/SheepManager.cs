@@ -54,7 +54,7 @@ public class SheepManager : MonoBehaviour
                     Quaternion.Euler(Vector3.up * Random.Range(0, 0)),
                     transform
                     );
-                newAgent.name = "Agent " + i;
+                newAgent.name = "Agent " + s + ":" + i;
                 newSheepGroup.Add(newAgent);
                 newAgent.GetComponent<NavMeshAgent>().speed = baseSpeed + Random.Range(-0.5f, 0.5f);
                 newAgent.GetComponent<SheepAgent>().sheepMeshObject.GetComponent<Renderer>().materials[0].SetTexture("_BaseMap", sheepTextures[SheepCore.RandomWeightArrayIndex(sheepTexturesWeight)]);
@@ -208,6 +208,14 @@ public class SheepManager : MonoBehaviour
             StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
         }
     }
+    private static Vector3 RandomPointInBounds(Bounds bounds)
+    {
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
+    }
 
     IEnumerator UpdatePositionDelay()
     {
@@ -221,11 +229,10 @@ public class SheepManager : MonoBehaviour
 
         foreach (GameObject sheep in sheepGroups[sheepGroupId].sheeps)
         {
-            Vector2 randomCirclePosition = Random.insideUnitCircle * 5;
-            Vector3 walkPosition = new Vector3(finishArea.transform.position.x + randomCirclePosition.x, finishArea.transform.position.y, finishArea.transform.position.z + randomCirclePosition.y);
+            Vector3 walkPosition = RandomPointInBounds(finishArea.GetComponent<Collider>().bounds);
             sheep.GetComponent<NavMeshAgent>().SetDestination(walkPosition);
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(Random.Range(5,10));
 
         StartCoroutine(SheepInsideFinishArea(sheepGroupId, finishArea));
     }
