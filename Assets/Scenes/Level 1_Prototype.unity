@@ -13849,6 +13849,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.024959622
       objectReference: {fileID: 0}
+    - target: {fileID: 2733078765047465577, guid: b47f5c74a6bf71b4ca069e78d5027110,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3882894324811146040, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_RenderingLayerMask
@@ -52026,6 +52031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.09635544
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465554333659122789, guid: e2810e33bc5cceb47bd17069ac919366,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2552547558504039239, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
