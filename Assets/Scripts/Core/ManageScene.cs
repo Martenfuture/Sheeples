@@ -12,7 +12,7 @@ public class ManageScene : MonoBehaviour
     void Awake()
     {
         instance = this;
-        SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         SceneManager.LoadScene("Core", LoadSceneMode.Additive);
     }
 

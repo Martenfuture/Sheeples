@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class QuestSheepCount : MonoBehaviour
 {
     
     private TextMeshProUGUI textCounter;
     [SerializeField] QuestText questScriptableObject;
+    int sheepCounter;
 
     public static QuestSheepCount instance = null;
 
@@ -24,6 +26,7 @@ public class QuestSheepCount : MonoBehaviour
 
     public void SetCounter(int count)
     {
+        sheepCounter = count;
         textCounter.text = questScriptableObject.text + count + "/" + SheepManager.instance.sheepCountTotal;
     }
 
@@ -38,6 +41,6 @@ public class QuestSheepCount : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        textCounter.text = questScriptableObject.text + "0/" + SheepManager.instance.sheepCountTotal;
+        textCounter.text = questScriptableObject.text + sheepCounter + "/" + SheepManager.instance.sheepCountTotal;
     }
 }

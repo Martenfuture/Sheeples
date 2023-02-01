@@ -18,6 +18,7 @@ public class FinishArea : MonoBehaviour
             {
                 QuestSheepCount.instance.CompleteQuest();
                 ManageScene.instance.ShowFinishUI();
+                Timer.instance.TimerStarted = false;
             }
         }
     }
