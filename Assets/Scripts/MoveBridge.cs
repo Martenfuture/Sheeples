@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MoveBridge : MonoBehaviour
 {
-    public float speed = 1f;
-   
+    public float rotationSpeed = 10f;
+    private float targetRotation = -90f;
 
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(-90, transform.eulerAngles.y, transform.eulerAngles.z);
+        float currentRotation = transform.eulerAngles.x;
+        float newRotation = Mathf.MoveTowardsAngle(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(newRotation, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
-    
 }
