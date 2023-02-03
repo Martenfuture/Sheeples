@@ -143,7 +143,7 @@ public class SheepManager : MonoBehaviour
     // Split sheep from main group if bool SplitGroup is true it splits a group, if not only one
     public void SplitSheepListRandom(bool SplitGroup)
     {
-        if (sheepGroups[0].sheeps.Count >= 1)
+        if (sheepGroups[0].sheeps.Count <= 1)
         {
             return;
         }
