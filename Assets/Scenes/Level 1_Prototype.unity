@@ -14749,7 +14749,7 @@ PrefabInstance:
     - target: {fileID: 409088146418305781, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_BindingMode
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 437404916107771857, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
@@ -14795,14 +14795,17 @@ PrefabInstance:
         type: 3}
       propertyPath: ZAxis
       value: 
-      objectReference: {fileID: 6863424050657876544, guid: 13f9cc5f8c3cc4e4bbe979caf4b60280,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2044028993840320788, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: XYAxis
       value: 
-      objectReference: {fileID: 6863424050657876544, guid: 13f9cc5f8c3cc4e4bbe979caf4b60280,
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044028993840320788, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
+      propertyPath: AutoEnableInputs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2218473151764842090, guid: b47f5c74a6bf71b4ca069e78d5027110,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -54379,14 +54382,17 @@ PrefabInstance:
         type: 3}
       propertyPath: ZAxis
       value: 
-      objectReference: {fileID: 6863424050657876544, guid: 13f9cc5f8c3cc4e4bbe979caf4b60280,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5678837378313391120, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: XYAxis
       value: 
-      objectReference: {fileID: 6863424050657876544, guid: 13f9cc5f8c3cc4e4bbe979caf4b60280,
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678837378313391120, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
+      propertyPath: AutoEnableInputs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5727297541767535425, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_RootOrder
@@ -54445,7 +54451,7 @@ PrefabInstance:
     - target: {fileID: 5851954864474432722, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
       propertyPath: m_BindingMode
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6795991876359432641, guid: e2810e33bc5cceb47bd17069ac919366,
         type: 3}
