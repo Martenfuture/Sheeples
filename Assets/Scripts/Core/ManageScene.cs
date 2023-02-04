@@ -32,9 +32,21 @@ public class ManageScene : MonoBehaviour
         SceneManager.LoadScene(GetCurrentLevelIndex());
     }
 
+    public void PlayLevelId(int id)
+    {
+        if (id == -1)
+        {
+            SceneManager.LoadScene(GetCurrentLevelIndex() + 1);
+        } else
+        {
+            SceneManager.LoadScene(id);
+        }
+
+    }
+
     public void PlayNextLevel()
     {
-        SceneManager.LoadScene(GetCurrentLevelIndex() + 1);
+        PlayLevelId(-1);
     }
 
     public void ShowFinishUI()
