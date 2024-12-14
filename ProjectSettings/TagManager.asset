@@ -5,18 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sheep
+  - AttachableObject
+  - Waypoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Outlined Objects
   - Water
   - UI
   - 'Player1 '
   - Player2
   - Obstacle
-  - 
-  - 
+  - Post Processing
+  - Flowers
   - 
   - 
   - 

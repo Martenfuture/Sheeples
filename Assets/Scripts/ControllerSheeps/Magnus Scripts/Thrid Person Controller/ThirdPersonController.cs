@@ -11,20 +11,34 @@ public class ThirdPersonController : MonoBehaviour
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
+    private InputAction run;
 
     //movement fields
     private Rigidbody rb;
     [SerializeField]
     private float movementForce = 1f;
+    private float maxForce = 50f;
     [SerializeField]
     private float jumpForce = 5f;
-    [SerializeField]
-    private float maxSpeed = 5f;
+    private float maxSpeed = 10f;
+    [SerializeField] float maxWalkSpeed;
+    [SerializeField] float maxSprintSpeed;
     private Vector3 forceDirection = Vector3.zero;
+
+    public bool isRunning;
 
     [SerializeField]
     private Camera playerCamera;
     private Animator animator;
+
+    public Vector3 RespawnPosition;
+
+    void Start()
+    {
+        RespawnPosition = transform.position;
+    }
+
+
 
     private void Awake()
     {
@@ -34,6 +48,7 @@ public class ThirdPersonController : MonoBehaviour
         //playerActionsAsset = new ThirdPersonActionsAsset();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
+        
     }
 
     private void OnEnable()
@@ -45,6 +60,8 @@ public class ThirdPersonController : MonoBehaviour
         player.FindAction("Jump").started += DoJump;
         player.FindAction("Attack").started += DoAttack;
         move = player.FindAction("Move");
+        player.FindAction("Run").started += DoRun;
+        player.FindAction("Run").canceled += StopRun;
         player.Enable();
     }
 
@@ -55,13 +72,20 @@ public class ThirdPersonController : MonoBehaviour
         //playerActionsAsset.Player.Disable();
         player.FindAction("Jump").started -= DoJump;
         player.FindAction("Attack").started -= DoAttack;
+        player.FindAction("Run").started -= DoRun;
+        player.FindAction("Run").canceled -= StopRun;
         player.Disable();
+    }
+
+    private void Update()
+    {
+        gameObject.GetComponent<Animator>().SetFloat("movementSpeed", gameObject.GetComponent<Rigidbody>().velocity.magnitude);
     }
 
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraRight(playerCamera) * movementForce;
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraForward(playerCamera) * movementForce;
+        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
+        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -74,7 +98,18 @@ public class ThirdPersonController : MonoBehaviour
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
+
         LookAt();
+
+        
+    }
+    private void DoRun(InputAction.CallbackContext obj)
+    {
+        maxSpeed = maxSprintSpeed;
+    }
+    private void StopRun(InputAction.CallbackContext obj)
+    {
+        maxSpeed = maxWalkSpeed;
     }
 
     private void LookAt()
@@ -104,9 +139,10 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if (IsGrounded())
+        if (IsGrounded() && jumpForce != 0)
         {
             forceDirection += Vector3.up * jumpForce;
+            gameObject.GetComponent<Animator>().SetTrigger("jumping");
         }
     }
 
@@ -123,4 +159,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
+
+
+
 }

@@ -95,6 +95,17 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4917560743788692090}
   m_PrefabAsset: {fileID: 0}
+--- !u!154 &2953296319434542509
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5260141283693002539}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: 63cf658eccdc90e4a85d63904dc5c996, type: 2}
+  m_EnableTreeColliders: 1
 --- !u!218 &2377778143424955965
 Terrain:
   m_ObjectHideFlags: 0
@@ -129,14 +140,3 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!154 &2953296319434542509
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5260141283693002539}
-  m_Material: {fileID: 0}
-  m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 63cf658eccdc90e4a85d63904dc5c996, type: 2}
-  m_EnableTreeColliders: 1
